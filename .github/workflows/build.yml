@@ -21,9 +21,6 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Build SanjuSystemX APK
         run: |
           if [ -f gradlew ]; then
@@ -36,6 +33,7 @@ jobs:
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: SanjuSystemX-V3-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
